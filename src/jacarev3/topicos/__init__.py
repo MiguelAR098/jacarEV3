@@ -11,3 +11,7 @@ Uso:
     with RoboEV3('00:16:53:64:F8:B8') as robo:
         circuito.seguir_linha(robo, porta_sensor=1)
 """
+
+from . import circuito, desvio
+
+__all__ = ["circuito", "desvio"]

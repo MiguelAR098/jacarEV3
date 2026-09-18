@@ -8,3 +8,7 @@ dist/
 venv/
 *.egg
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+teste_venv/
+site/

@@ -4,6 +4,26 @@ Todas as mudanças notáveis desse projeto são documentadas aqui.
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 versionamento segue [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.2.1] - 2026-09-17
+
+### Corrigido
+- Logo do README agora usa URL absoluta — a página do PyPI não resolve
+  caminho relativo, então o logo aparecia quebrado lá. Links pro LICENSE e
+  pro CHANGELOG também viraram absolutos pelo mesmo motivo.
+- `__version__` estava travado em "0.1.0" enquanto o pacote já era 0.2.0.
+  Agora o `pyproject.toml` lê a versão de `jacarev3.__init__` (setuptools
+  dynamic), então existe um lugar só pra mudar.
+
+### Adicionado
+- README documenta o que entrou na 0.2.0: `ler_sensor()`, `mover_continuo()`
+  e o submódulo `jacarev3.topicos`, com link pros tutoriais em `docs/`.
+- `jacarev3` re-exporta `protocolo` e `topicos`; `jacarev3.topicos`
+  re-exporta `circuito` e `desvio`. Antes `from jacarev3 import protocolo`
+  só funcionava por acidente do import machinery.
+- Extra de desenvolvimento: `pip install -e ".[dev]"` (pytest, ruff, mypy).
+- `MANIFEST.in` põe `docs/`, `assets/` e o CHANGELOG no sdist.
+- `.editorconfig`.
+
 ## [0.2.0] - 2026-09-17
 
 ### Adicionado
