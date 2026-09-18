@@ -125,6 +125,26 @@ class RoboEV3:
         cmd = p.Comando().add(p.opOUTPUT_STOP, p.lc0(0), p.lc0(bit_porta), p.lc0(acao))
         self._enviar(cmd)
 
+    def mover_continuo(self, porta, velocidade=30):
+        """
+        Liga o motor numa velocidade e deixa rodando (não para sozinho).
+        Usa opOUTPUT_STEP_SPEED com STEP2 bem grande — pra parar de verdade,
+        chama parar_motor() depois. Serve pra loops de controle (seguir
+        linha, desviar obstáculo) onde a velocidade muda a cada iteração.
+        """
+        bit_porta = PORTAS_MOTOR[porta]
+        cmd = p.Comando().add(
+            p.opOUTPUT_STEP_SPEED,
+            p.lc0(0),                    # layer 0
+            p.lc0(bit_porta),            # porta
+            p.lc1(velocidade),           # velocidade
+            p.lc0(0),                    # ramp-up = 0
+            p.lc4(2_000_000_000),        # step2 gigante (~roda "pra sempre")
+            p.lc0(0),                    # ramp-down = 0
+            p.lc0(p.PARAR_COAST),
+        )
+        self._enviar(cmd)
+
     def testar_motor(self, porta, velocidade=30, duracao_ms=800):
         print(f"Girando motor {porta} pra frente...")
         self.girar_motor(porta, velocidade=velocidade, duracao_ms=duracao_ms)
@@ -158,6 +178,15 @@ class RoboEV3:
         if n_valores == 1:
             return struct.unpack_from('<f', payload, 0)[0]
         return struct.unpack_from(f'<{n_valores}f', payload, 0)
+
+    def ler_sensor(self, porta, modo):
+        """
+        Leitura direta e imediata de um sensor (sem esperar mudança) — pro
+        uso em loops de controle (linha, obstáculo). `modo` vem das
+        constantes MODO_* de jacarev3.protocolo (ex: p.MODO_COR_REFLETIDA).
+        """
+        indice = PORTAS_SENSOR[porta]
+        return self._ler_sensor(indice, modo)
 
     def testar_ultrassonico(self, porta, tempo_limite=15):
         indice = PORTAS_SENSOR[porta]

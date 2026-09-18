@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "jacarev3"
-version = "0.1.0"
+version = "0.2.0"
 description = "Lib em português pra controlar o LEGO EV3 via Bluetooth — protocolo Direct Commands implementado do zero, sem dependências externas"
 readme = "README.md"
 requires-python = ">=3.9"

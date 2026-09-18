@@ -4,6 +4,17 @@ Todas as mudanças notáveis desse projeto são documentadas aqui.
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 versionamento segue [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.2.0] - 2026-09-17
+
+### Adicionado
+- Submódulo `jacarev3.topicos` — receitas prontas de robótica educacional:
+  - `topicos.circuito.seguir_linha()` — seguir linha preta (bang-bang) +
+    `calibrar()` automática
+  - `topicos.desvio.desviar_obstaculo()` — desviar de obstáculo com
+    sensor ultrassônico
+- `RoboEV3.ler_sensor()` — leitura direta de sensor (pra loops de controle)
+- `RoboEV3.mover_continuo()` — motor contínuo sem parar sozinho
+
 ## [0.1.0] - 2026-09-17
 
 ### Adicionado
