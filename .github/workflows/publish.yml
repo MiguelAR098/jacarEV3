@@ -8,6 +8,11 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+
+    # Trusted Publishing (OIDC) — sem token, o PyPI confia neste workflow.
+    permissions:
+      id-token: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -17,13 +22,10 @@ jobs:
           python-version: "3.11"
 
       - name: Instalar ferramentas de build
-        run: pip install build twine
+        run: pip install build
 
       - name: Gerar pacote
         run: python -m build
 
       - name: Publicar no PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/*
+        uses: pypa/gh-action-pypi-publish@release/v1
