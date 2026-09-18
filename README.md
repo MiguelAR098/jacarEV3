@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" width="150" alt="jacarEV3">
+</p>
+
 # jacarEV3 🐊
 
 Lib em português pra controlar o LEGO EV3 via Bluetooth. Sem dependências
