@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jacarev3"
+version = "0.1.0"
+description = "Lib em português pra controlar o LEGO EV3 via Bluetooth — protocolo Direct Commands implementado do zero, sem dependências externas"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+    { name = "Ítalo Vinicius Barbosa Felix" }
+]
+keywords = ["ev3", "lego", "mindstorms", "robotica", "bluetooth", "educacional"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Education",
+    "Topic :: System :: Hardware",
+    "Natural Language :: Portuguese (Brazilian)",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/i-barbosa/jacarEV3"
+Repository = "https://github.com/i-barbosa/jacarEV3"
+Issues = "https://github.com/i-barbosa/jacarEV3/issues"
+Changelog = "https://github.com/i-barbosa/jacarEV3/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
